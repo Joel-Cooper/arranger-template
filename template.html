@@ -1,0 +1,43 @@
+{%- set arrangers = {} -%}
+
+{%- if clients is not empty -%}
+	{%- for client in clients -%}
+		{%- if client.funeralArranger is not empty -%}
+			
+			{%- set id = client.funeralArranger.id -%}
+			
+			{%- if arrangers[id] is empty -%}
+				{%- set arrangers = arrangers|merge({
+				 (id): {
+						arranger:client.funeralArranger,
+						clients: []
+					} 
+				}) -%}
+			{%- endif -%}
+			
+			{%- set current = arrangers[id] -%}
+			
+			{%- set updated = current|merge({
+				clients: current.clients|merge([client])
+			}) -%}
+			
+			{%- set arrangers = arrangers|merge({ (id): updated }) -%}
+					
+		{%- endif -%}
+	{%- endfor -%}
+{%- endif -%}
+
+{%- if arrangers is not empty -%}
+	{%- for item in arrangers -%}
+		<h3>
+			{{- item.arranger.id ~ ' - ' -}}
+			{{- item.arranger.name.first ~ ' ' ~ item.arranger.name.last -}}
+		</h3>
+		
+		{%- if clients is not empty -%}
+			{%- for client in clients -%}
+				<p>{{- client.name.first ~ ' ' ~ client.name.last -}}</p>
+			{%- endfor -%}
+		{%- endif -%}
+	{%- endfor -%}
+{%- endif -%}
