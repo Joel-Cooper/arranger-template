@@ -1,0 +1,25 @@
+{
+  "clients": [
+    {
+      "name": { "first": "John", "last": "Smith" },
+      "funeralArranger": {
+        "id": "abc",
+        "name": { "first": "Bob", "last": "Dean" }
+      }
+    },
+    {
+      "name": { "first": "Emily", "last": "Jones" },
+      "funeralArranger": {
+        "id": "abc",
+        "name": { "first": "Bob", "last": "Dean" }
+      }
+    },
+    {
+      "name": { "first": "Michael", "last": "Brown" },
+      "funeralArranger": {
+        "id": "xyz",
+        "name": { "first": "Alice", "last": "Green" }
+      }
+    }
+  ]
+}
